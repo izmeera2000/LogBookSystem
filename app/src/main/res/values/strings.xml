@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Log Book System</string>
+    <string name="Username">Username</string>
+    <string name="Password">Password</string>
+    <string name="Login">Login</string>
+    <string name="SignUp">Sign Up</string>
+    <string name="FullName">Full Name</string>
+    <string name="email">Email</string>
+    <string name="loginhere">Login Here</string>
+    <string name="SignUpHere">Sign Up Here</string>
+    <string name="welcome">Welcome</string>
+</resources>
