@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     //this is the JSON Data URL
     //make sure you are using the correct ip else it will not work
-    private static final String URL_PRODUCTS = "http://192.168.43.11/logbooksystem/api.php";
+    private static final String URL_PRODUCTS = "https://saraart.000webhostapp.com/api.php";
 
     //a list to store all the products
     List<Product> productList;
