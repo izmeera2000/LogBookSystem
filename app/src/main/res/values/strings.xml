@@ -9,4 +9,10 @@
     <string name="loginhere">Login Here</string>
     <string name="SignUpHere">Sign Up Here</string>
     <string name="welcome">Welcome</string>
+    <string name="AddNewVehicle">Add New Vehicle</string>
+    <string name="ImageLink">Image Link</string>
+    <string name="Model">Model</string>
+    <string name="Registern">Register Number</string>
+    <string name="Department">Department</string>
+    <string name="Add">ADD</string>
 </resources>

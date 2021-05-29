@@ -1,7 +1,11 @@
 package net.simplifiedlearning.logbooksystem;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -10,6 +14,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,13 +27,14 @@ public class MainActivity extends AppCompatActivity {
 
     //this is the JSON Data URL
     //make sure you are using the correct ip else it will not work
-    private static final String URL_PRODUCTS = "https://saraart.000webhostapp.com/api.php";
+    private static final String URL_PRODUCTS = "http://saraart.000webhostapp.com/api.php";
 
     //a list to store all the products
     List<Product> productList;
 
     //the recyclerview
     RecyclerView recyclerView;
+
 
 
     @Override
@@ -40,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recylcerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        FloatingActionButton addbutt = findViewById(R.id.addbutton);
 
         //initializing the productlist
         productList = new ArrayList<>();
@@ -47,6 +54,11 @@ public class MainActivity extends AppCompatActivity {
         //this method will fetch and parse json
         //to display it in recyclerview
         loadProducts();
+        addbutt.setOnClickListener(v -> {
+            Intent intent = new Intent(getApplicationContext(),AddVehicle.class);
+            startActivity(intent);
+            finish();
+        });
     }
 
     private void loadProducts() {
@@ -101,4 +113,6 @@ public class MainActivity extends AppCompatActivity {
         //adding our stringrequest to queue
         Volley.newRequestQueue(this).add(stringRequest);
     }
+
+
 }
