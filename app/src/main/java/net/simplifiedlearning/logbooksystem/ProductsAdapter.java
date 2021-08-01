@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.Response;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
@@ -18,13 +19,19 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
 
     private Context mCtx;
     private List<Product> productList;
+    private RecyclerViewClickListener listener;
 
 
 
-    public ProductsAdapter(Context mCtx, List<Product> productList) {
+
+    public ProductsAdapter(Context mCtx, List<Product> productList, RecyclerViewClickListener listener) {
         this.mCtx = mCtx;
         this.productList = productList;
+        this.listener = listener;
+
     }
+
+
 
     @Override
     public ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -53,12 +60,17 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
         return productList.size();
     }
 
-    class ProductViewHolder extends RecyclerView.ViewHolder {
+    public interface RecyclerViewClickListener{
+        void onClick(View v , int position);
+    }
+
+    class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener  {
 
         TextView textViewTitle, textViewShortDesc, textViewRating, textViewPrice;
         ImageView imageView;
 
-        public ProductViewHolder(View itemView) {
+
+        public ProductViewHolder(View itemView ) {
             super(itemView);
 
             textViewTitle = itemView.findViewById(R.id.textViewTitle);
@@ -66,6 +78,17 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
             textViewRating = itemView.findViewById(R.id.textViewRating);
             textViewPrice = itemView.findViewById(R.id.textViewPrice);
             imageView = itemView.findViewById(R.id.imageView);
+
+            itemView.setOnClickListener(this);
+
+
+
+        }
+
+
+        @Override
+        public void onClick(View view) {
+        listener.onClick(view, getAdapterPosition());
         }
     }
 

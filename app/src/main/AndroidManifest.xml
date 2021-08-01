@@ -12,8 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".AddVehicle"></activity>
-        <activity android:name=".LogBook" />
+        <activity
+            android:name=".LogBookS"
+            android:exported="true" />
+        <activity android:name=".AddVehicle" />
         <activity android:name=".Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

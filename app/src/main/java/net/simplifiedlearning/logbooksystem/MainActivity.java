@@ -4,7 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -30,12 +34,32 @@ public class MainActivity extends AppCompatActivity {
     private static final String URL_PRODUCTS = "http://saraart.000webhostapp.com/api.php";
 
     //a list to store all the products
-    List<Product> productList;
+    private List<Product> productList;
 
     //the recyclerview
-    RecyclerView recyclerView;
+    private RecyclerView recyclerView;
+    private ProductsAdapter.RecyclerViewClickListener listener;
 
+    boolean doubleBackToExitPressedOnce = false;
 
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Please press BACK again to exit", Toast.LENGTH_SHORT).show();
+
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce=false;
+            }
+        }, 2000);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,7 +120,8 @@ public class MainActivity extends AppCompatActivity {
                             }
 
                             //creating adapter object and setting it to recyclerview
-                            ProductsAdapter adapter = new ProductsAdapter(MainActivity.this, productList);
+                            setOnClickListener();
+                            ProductsAdapter adapter = new ProductsAdapter(MainActivity.this, productList, listener);
                             recyclerView.setAdapter(adapter);
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -112,6 +137,17 @@ public class MainActivity extends AppCompatActivity {
 
         //adding our stringrequest to queue
         Volley.newRequestQueue(this).add(stringRequest);
+    }
+
+    private void setOnClickListener() {
+        listener = new ProductsAdapter.RecyclerViewClickListener() {
+            @Override
+            public void onClick(View v, int position) {
+             Intent intent = new Intent( getApplicationContext(), LogBookS.class);
+             intent.putExtra("registerndata", productList.get(position).getRating());
+                     startActivity(intent);
+            }
+        };
     }
 
 
