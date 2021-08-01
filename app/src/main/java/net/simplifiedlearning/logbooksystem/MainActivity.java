@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
         listener = new ProductsAdapter.RecyclerViewClickListener() {
             @Override
             public void onClick(View v, int position) {
-             Intent intent = new Intent( getApplicationContext(), LogBookS.class);
+             Intent intent = new Intent( getApplicationContext(), LogBookMain.class);
              intent.putExtra("registerndata", productList.get(position).getRating());
                      startActivity(intent);
             }

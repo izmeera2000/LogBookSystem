@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Design.Light.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".LogBookMain"
+            android:exported="true" />
+        <activity
             android:name=".LogBookS"
             android:exported="true" />
         <activity android:name=".AddVehicle" />
