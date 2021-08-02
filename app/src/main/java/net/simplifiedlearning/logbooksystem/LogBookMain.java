@@ -131,7 +131,7 @@ public class LogBookMain extends AppCompatActivity {
 
                             //creating adapter object and setting it to recyclerview
                            // setOnClickListener();
-                            ProductsAdapter2 adapter = new ProductsAdapter2(LogBookMain.this, productList2, listener2);
+                            ProductsAdapter2 adapter = new ProductsAdapter2(LogBookMain.this, productList2);
                             recyclerView.setAdapter(adapter);
                         } catch (JSONException e) {
                             e.printStackTrace();

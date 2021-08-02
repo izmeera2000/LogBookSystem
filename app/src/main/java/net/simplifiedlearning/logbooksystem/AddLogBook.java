@@ -97,8 +97,11 @@ public class AddLogBook extends AppCompatActivity {
                             progressBar.setVisibility(View.GONE);
                             String result = putData.getResult();
                             if (result.equals("New Entry Added")){
-                                Toast.makeText(getApplicationContext(), "New Entry for" + finalRegistern + " successful", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+
+                                Toast.makeText(getApplicationContext(), "New Entry for " + finalRegistern + " successful", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(getApplicationContext(), LogBookMain.class);
+                                intent.putExtra("registerndata", finalRegistern);
+                                intent.putExtra("username", finalUsername);
                                 startActivity(intent);
                                 finish();
 

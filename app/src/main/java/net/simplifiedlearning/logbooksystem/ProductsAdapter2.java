@@ -19,15 +19,15 @@ public class ProductsAdapter2 extends RecyclerView.Adapter<ProductsAdapter2.Prod
 
     private Context mCtx;
     private List<Product2> productList2;
-    private RecyclerViewClickListener listener2;
 
 
 
 
-    public ProductsAdapter2(Context mCtx, List<Product2> productList2, RecyclerViewClickListener listener2) {
+
+    public ProductsAdapter2(Context mCtx, List<Product2> productList2) {
         this.mCtx = mCtx;
         this.productList2 = productList2;
-        this.listener2 = listener2;
+
 
     }
 
@@ -63,7 +63,7 @@ public class ProductsAdapter2 extends RecyclerView.Adapter<ProductsAdapter2.Prod
         void onClick(View v , int position);
     }
 
-    class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener  {
+    class ProductViewHolder extends RecyclerView.ViewHolder   {
 
         TextView textViewTitle, textViewShortDesc, textViewRating, textViewPrice,textViewPrice2;
         ImageView imageView;
@@ -78,17 +78,14 @@ public class ProductsAdapter2 extends RecyclerView.Adapter<ProductsAdapter2.Prod
             textViewPrice = itemView.findViewById(R.id.textViewPriceLog);
             textViewPrice2 = itemView.findViewById(R.id.textViewPriceLog2);
 
-            itemView.setOnClickListener(this);
+
 
 
 
         }
 
 
-        @Override
-        public void onClick(View view) {
-        listener2.onClick(view, getAdapterPosition());
-        }
+
     }
 
 }
