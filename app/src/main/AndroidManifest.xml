@@ -16,7 +16,7 @@
             android:name=".LogBookMain"
             android:exported="true" />
         <activity
-            android:name=".LogBookS"
+            android:name=".AddLogBook"
             android:exported="true" />
         <activity android:name=".AddVehicle" />
         <activity android:name=".Login">

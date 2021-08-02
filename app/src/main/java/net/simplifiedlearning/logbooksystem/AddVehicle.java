@@ -15,6 +15,10 @@ import android.widget.Toast;
 import com.google.android.material.textfield.TextInputEditText;
 import com.vishnusivadas.advanced_httpurlconnection.PutData;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class AddVehicle extends AppCompatActivity {
     TextInputEditText textInputEditTextImageLink, textInputEditTextBrand, textInputEditTextModel, textInputEditTextRegistern,textInputEditTextDepartment;
     Button buttonAdd;
@@ -45,6 +49,7 @@ public class AddVehicle extends AppCompatActivity {
        // });
 
         buttonAdd.setOnClickListener(v -> {
+
             String imagelink , brand , model , registern, department;
             imagelink = String.valueOf(textInputEditTextImageLink.getText());
             brand = String.valueOf(textInputEditTextBrand.getText());
@@ -77,8 +82,8 @@ public class AddVehicle extends AppCompatActivity {
                         if (putData.onComplete()) {
                             progressBar.setVisibility(View.GONE);
                             String result = putData.getResult();
-                            if (result.equals("Sign Up Success")){
-                                Toast.makeText(getApplicationContext(), "Sign Up Successful", Toast.LENGTH_SHORT).show();
+                            if (result.equals("New Vehicle Successfully Added")){
+                                Toast.makeText(getApplicationContext(), "New Vehicle Successfully Added", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                 startActivity(intent);
                                 finish();

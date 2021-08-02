@@ -16,4 +16,8 @@
     <string name="Department">Department</string>
     <string name="Add">ADD</string>
     <string name="brand">Brand</string>
+    <string name="AddNewEntry">Add New Entry</string>
+    <string name="TimePicker">SELECT TIME</string>
+    <string name="starttime">Start Time</string>
+    <string name="endtime">End Time</string>
 </resources>

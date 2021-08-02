@@ -97,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_PRODUCTS,
                 new Response.Listener<String>() {
                     @Override
+
                     public void onResponse(String response) {
                         try {
                             //converting the string to json array object
@@ -141,10 +142,19 @@ public class MainActivity extends AppCompatActivity {
 
     private void setOnClickListener() {
         listener = new ProductsAdapter.RecyclerViewClickListener() {
+
             @Override
+
             public void onClick(View v, int position) {
+                String username = null;
+                Bundle extra = getIntent().getExtras();
+
+                if (extra != null){
+                    username = extra.getString("username");
+                }
              Intent intent = new Intent( getApplicationContext(), LogBookMain.class);
-             intent.putExtra("registerndata", productList.get(position).getRating());
+                intent.putExtra("username", username);
+                intent.putExtra("registerndata", productList.get(position).getRating());
                      startActivity(intent);
             }
         };
