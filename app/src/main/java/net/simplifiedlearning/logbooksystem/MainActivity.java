@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         addbutt.setOnClickListener(v -> {
             Intent intent = new Intent(getApplicationContext(),AddVehicle.class);
             startActivity(intent);
-            finish();
+
         });
     }
 
