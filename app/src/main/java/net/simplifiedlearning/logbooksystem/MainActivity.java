@@ -6,16 +6,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
+
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -52,13 +49,7 @@ public class MainActivity extends AppCompatActivity {
         this.doubleBackToExitPressedOnce = true;
         Toast.makeText(this, "Please press BACK again to exit", Toast.LENGTH_SHORT).show();
 
-        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-
-            @Override
-            public void run() {
-                doubleBackToExitPressedOnce=false;
-            }
-        }, 2000);
+        new Handler(Looper.getMainLooper()).postDelayed(() -> doubleBackToExitPressedOnce=false, 2000);
     }
 
     @Override
@@ -95,45 +86,38 @@ public class MainActivity extends AppCompatActivity {
          * In response listener we will get the JSON response as a String
          * */
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_PRODUCTS,
-                new Response.Listener<String>() {
-                    @Override
+                response -> {
+                    try {
+                        //converting the string to json array object
+                        JSONArray array = new JSONArray(response);
 
-                    public void onResponse(String response) {
-                        try {
-                            //converting the string to json array object
-                            JSONArray array = new JSONArray(response);
+                        //traversing through all the object
+                        for (int i = 0; i < array.length(); i++) {
 
-                            //traversing through all the object
-                            for (int i = 0; i < array.length(); i++) {
+                            //getting product object from json array
+                            JSONObject product = array.getJSONObject(i);
 
-                                //getting product object from json array
-                                JSONObject product = array.getJSONObject(i);
-
-                                //adding the product to product list
-                                productList.add(new Product(
-                                        product.getInt("id"),
-                                        product.getString("brand"),
-                                        product.getString("model"),
-                                        product.getString("registern"),
-                                        product.getString("department"),
-                                        product.getString("image")
-                                ));
-                            }
-
-                            //creating adapter object and setting it to recyclerview
-                            setOnClickListener();
-                            ProductsAdapter adapter = new ProductsAdapter(MainActivity.this, productList, listener);
-                            recyclerView.setAdapter(adapter);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                            //adding the product to product list
+                            productList.add(new Product(
+                                    product.getInt("id"),
+                                    product.getString("brand"),
+                                    product.getString("model"),
+                                    product.getString("registern"),
+                                    product.getString("department"),
+                                    product.getString("image")
+                            ));
                         }
+
+                        //creating adapter object and setting it to recyclerview
+                        setOnClickListener();
+                        ProductsAdapter adapter = new ProductsAdapter(MainActivity.this, productList, listener);
+                        recyclerView.setAdapter(adapter);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
                 },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
+                error -> {
 
-                    }
                 });
 
         //adding our stringrequest to queue
@@ -141,22 +125,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setOnClickListener() {
-        listener = new ProductsAdapter.RecyclerViewClickListener() {
+        listener = (v, position) -> {
+            String username = null;
+            Bundle extra = getIntent().getExtras();
 
-            @Override
-
-            public void onClick(View v, int position) {
-                String username = null;
-                Bundle extra = getIntent().getExtras();
-
-                if (extra != null){
-                    username = extra.getString("username");
-                }
-             Intent intent = new Intent( getApplicationContext(), LogBookMain.class);
-                intent.putExtra("username", username);
-                intent.putExtra("registerndata", productList.get(position).getRating());
-                     startActivity(intent);
+            if (extra != null){
+                username = extra.getString("username");
             }
+         Intent intent = new Intent( getApplicationContext(), LogBookMain.class);
+            intent.putExtra("username", username);
+            intent.putExtra("registerndata", productList.get(position).getRating());
+                 startActivity(intent);
         };
     }
 

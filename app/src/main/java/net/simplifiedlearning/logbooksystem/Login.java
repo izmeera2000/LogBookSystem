@@ -39,7 +39,6 @@ public class Login extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
-
         buttonLogin.setOnClickListener(v -> {
             String username , password;
 
@@ -52,6 +51,7 @@ public class Login extends AppCompatActivity {
                 //Start ProgressBar first (Set visibility VISIBLE)
                 Handler handler = new Handler(Looper.getMainLooper());
                 handler.post(() -> {
+
                     //Starting Write and Read data with URL
                     //Creating array for parameters
                     String[] field = new String[2];

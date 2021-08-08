@@ -3,11 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Projects/LBS/app/src/main/res/layout/activity_add_log.xml" value="0.21" />
+        <entry key="..\:/Projects/LBS/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2203125" />
+        <entry key="..\:/Projects/LBS/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1125" />
+        <entry key="..\:/Projects/LBS/app/src/main/res/layout/activity_add_log.xml" value="0.25" />
         <entry key="..\:/Projects/LBS/app/src/main/res/layout/activity_add_log_book.xml" value="0.33" />
         <entry key="..\:/Projects/LBS/app/src/main/res/layout/activity_add_vehicle.xml" value="0.33" />
         <entry key="..\:/Projects/LBS/app/src/main/res/layout/activity_log_book.xml" value="0.1213768115942029" />
-        <entry key="..\:/Projects/LBS/app/src/main/res/layout/activity_log_book_main.xml" value="0.17" />
+        <entry key="..\:/Projects/LBS/app/src/main/res/layout/activity_log_book_main.xml" value="0.29067930489731436" />
         <entry key="..\:/Projects/LBS/app/src/main/res/layout/activity_log_book_s.xml" value="0.33" />
         <entry key="..\:/Projects/LBS/app/src/main/res/layout/activity_logbook.xml" value="0.1082427536231884" />
         <entry key="..\:/Projects/LBS/app/src/main/res/layout/activity_login.xml" value="0.1" />
@@ -15,6 +17,8 @@
         <entry key="..\:/Projects/LBS/app/src/main/res/layout/logbook.xml" value="0.1" />
         <entry key="..\:/Projects/LBS/app/src/main/res/layout/logbook_list.xml" value="0.33" />
         <entry key="..\:/Projects/LBS/app/src/main/res/layout/product_list.xml" value="0.1213768115942029" />
+        <entry key="..\:/Projects/LBS/app/src/main/res/mipmap-anydpi-v26/ic_launchermodi.xml" value="0.1125" />
+        <entry key="..\:/Projects/LBS/app/src/main/res/mipmap-anydpi-v26/ic_launchermodi_round.xml" value="0.1125" />
       </map>
     </option>
   </component>

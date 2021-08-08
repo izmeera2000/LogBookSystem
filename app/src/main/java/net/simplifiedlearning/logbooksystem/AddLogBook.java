@@ -7,7 +7,6 @@ import android.os.Looper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,7 +22,7 @@ import java.util.Locale;
 public class AddLogBook extends AppCompatActivity {
     TextInputEditText textstarttime, textendtime;
     Button buttonAdd;
-    TextView textViewLogin;
+
     ProgressBar progressBar;
 
 
@@ -40,12 +39,7 @@ public class AddLogBook extends AppCompatActivity {
         buttonAdd = findViewById(R.id.buttonADD);
         progressBar = findViewById(R.id.progress);
 
-       // textViewLogin = findViewById(R.id.loginText);
-        //textViewLogin.setOnClickListener(v -> {
-           // Intent intent = new Intent(getApplicationContext(),Login.class);
-          //  startActivity(intent);
-          //  finish();
-       // });
+
         String username = null;
         Bundle extra = getIntent().getExtras();
 

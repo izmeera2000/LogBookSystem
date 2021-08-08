@@ -9,20 +9,18 @@ import android.os.Looper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.TextView;
+
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.vishnusivadas.advanced_httpurlconnection.PutData;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
 
 public class AddVehicle extends AppCompatActivity {
     TextInputEditText textInputEditTextImageLink, textInputEditTextBrand, textInputEditTextModel, textInputEditTextRegistern,textInputEditTextDepartment;
     Button buttonAdd;
-    TextView textViewLogin;
+
     ProgressBar progressBar;
 
 
@@ -41,12 +39,7 @@ public class AddVehicle extends AppCompatActivity {
         buttonAdd = findViewById(R.id.buttonADD);
         progressBar = findViewById(R.id.progress);
 
-       // textViewLogin = findViewById(R.id.loginText);
-        //textViewLogin.setOnClickListener(v -> {
-           // Intent intent = new Intent(getApplicationContext(),Login.class);
-          //  startActivity(intent);
-          //  finish();
-       // });
+
 
         buttonAdd.setOnClickListener(v -> {
 
