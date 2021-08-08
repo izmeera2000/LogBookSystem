@@ -1,8 +1,12 @@
 package net.simplifiedlearning.logbooksystem;
 
+import android.app.DownloadManager;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
+import android.webkit.CookieManager;
+import android.webkit.URLUtil;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -20,7 +24,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import android.content.pm.PackageManager;
@@ -40,6 +43,13 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+import javax.net.ssl.HttpsURLConnection;
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
@@ -56,7 +66,8 @@ public class LogBookMain extends AppCompatActivity {
     private RecyclerView recyclerView;
 
 
-
+    private Button btnDownload;
+    String URL = "https://saraart.000webhostapp.com/fpdf183/tutorial/tuto1.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,8 +97,26 @@ public class LogBookMain extends AppCompatActivity {
 
         final Button pdfbutt = findViewById(R.id.pdfbutton);
         pdfbutt.setOnClickListener(v -> {
+
             // Code here executes on main thread after user presses button
-            generatePDF();
+
+            //generatePDF();
+            DownloadManager.Request request = new DownloadManager.Request(Uri.parse(URL));
+            String title = URLUtil.guessFileName(URL,null ,null);
+            request.setTitle(title);
+            request.setDescription("Downloading file please wait");
+            String cookie = CookieManager.getInstance().getCookie(URL);
+            request.addRequestHeader("cookie", cookie);
+            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+            request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS,title);
+
+
+            DownloadManager downloadManager = (DownloadManager)getSystemService(DOWNLOAD_SERVICE);
+            downloadManager.enqueue(request);
+
+            Toast.makeText(LogBookMain.this, "Dwl started.", Toast.LENGTH_SHORT).show();
+
+
 
         });
 
@@ -318,4 +347,6 @@ public class LogBookMain extends AppCompatActivity {
             }
         }
     }
+
+
 }
